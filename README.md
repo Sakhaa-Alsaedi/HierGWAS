@@ -432,6 +432,164 @@ If you use HierGWAS in your research, please cite our paper:
   url={https://github.com/username/HierGWAS}
 }
 ```
+# HierGWAS Quick Start Guide
+
+## 🚀 Run HierGWAS in 5 Minutes
+
+### Step 1: Setup Environment (2 minutes)
+
+```bash
+# Clone repository
+git clone <your-repository-url>
+cd HierGWAS
+
+# Create virtual environment
+python -m venv hiergwas_env
+
+# Activate environment
+# Linux/macOS:
+source hiergwas_env/bin/activate
+# Windows:
+hiergwas_env\Scripts\activate
+```
+
+### Step 2: Install Dependencies (2 minutes)
+
+```bash
+# Install PyTorch (CPU version)
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+
+# Install PyTorch Geometric
+pip install torch-geometric torch-scatter torch-sparse torch-cluster
+
+# Install other dependencies
+pip install numpy pandas scipy scikit-learn matplotlib seaborn tqdm
+
+# Install HierGWAS
+pip install -e .
+```
+
+### Step 3: Run Basic Example (1 minute)
+
+```bash
+# Run the basic usage example
+python examples/basic_usage.py
+```
+
+**That's it! 🎉**
+
+---
+
+## 📋 What Each File Does
+
+### Core Files
+- **`hiergwas/hiergwas.py`** - Main model class
+- **`hiergwas/attention.py`** - Hierarchical attention mechanism  
+- **`hiergwas/model.py`** - Neural network architecture
+- **`hiergwas/config.py`** - Configuration management
+- **`hiergwas/data.py`** - Data loading and preprocessing
+- **`hiergwas/utils.py`** - Visualization and analysis tools
+
+### Example Files
+- **`examples/basic_usage.py`** - Complete tutorial (run this first!)
+- **`examples/advanced_usage.py`** - Advanced features and analysis
+
+---
+
+## 🎯 Execution Order
+
+### For Beginners:
+1. **Run basic example**: `python examples/basic_usage.py`
+2. **Check results**: Look at generated files and plots
+3. **Modify configuration**: Try different settings in the code
+
+### For Advanced Users:
+1. **Run advanced example**: `python examples/advanced_usage.py --use-synthetic`
+2. **Try hyperparameter optimization**: Uncomment HPO sections
+3. **Use your own data**: Replace synthetic data with real GWAS data
+
+---
+
+## 🔧 Quick Troubleshooting
+
+### If you get import errors:
+```bash
+# Make sure you're in the right environment
+source hiergwas_env/bin/activate
+pip install -e .
+```
+
+### If you get memory errors:
+```python
+# Edit the config in examples/basic_usage.py
+config.update(batch_size=128)  # Reduce from 512
+```
+
+### If training is too slow:
+```python
+# Use smaller configuration
+config = HierGWASConfigs.small()
+config.max_epochs = 10  # Reduce epochs
+```
+
+---
+
+## 📊 Expected Output
+
+When you run `python examples/basic_usage.py`, you should see:
+
+```
+[2024-01-15 10:30:00] INFO: Starting HierGWAS Basic Usage Example
+[2024-01-15 10:30:01] INFO: Step 1: Preparing GWAS data
+[2024-01-15 10:30:02] INFO: Created synthetic data with 1000 SNPs, 500 genes, 100 pathways
+[2024-01-15 10:30:03] INFO: Step 2: Configuring HierGWAS model
+[2024-01-15 10:30:04] INFO: Step 3: Initializing HierGWAS model
+[2024-01-15 10:30:05] INFO: Model initialized on device: cpu
+[2024-01-15 10:30:06] INFO: Step 4: Creating data loaders
+[2024-01-15 10:30:07] INFO: Step 5: Setting up training
+[2024-01-15 10:30:08] INFO: Step 6: Training HierGWAS model
+[2024-01-15 10:30:09] INFO: Epoch 1/50, Batch 0/8, Loss: 0.6931
+...
+[2024-01-15 10:35:00] INFO: Test AUC: 0.8234
+[2024-01-15 10:35:01] INFO: HierGWAS Basic Usage Example completed successfully!
+```
+
+**Generated Files:**
+- `best_model.pth` - Trained model
+- `attention_analysis.png` - Attention visualizations  
+- `training_curves.png` - Training progress
+- `hiergwas_model/` - Complete model package
+
+---
+
+## 🎯 Next Steps
+
+1. **Explore the code**: Look at `examples/basic_usage.py` to understand the workflow
+2. **Try different configurations**: Modify the config parameters
+3. **Use your own data**: Replace synthetic data with real GWAS data
+4. **Run advanced analysis**: Try `examples/advanced_usage.py`
+
+---
+
+## 💡 Key Commands Summary
+
+```bash
+# Setup
+python -m venv hiergwas_env
+source hiergwas_env/bin/activate
+pip install torch torch-geometric
+pip install -e .
+
+# Run examples
+python examples/basic_usage.py
+python examples/advanced_usage.py --use-synthetic
+
+# Test installation
+python -c "import hiergwas; print('✅ Success!')"
+```
+
+**Need help?** Check the full `HierGWAS_README.md` for detailed instructions!
+
 
 ## 📜 License
 
