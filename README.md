@@ -1,4 +1,4 @@
-# HierGWAS: Hierarchical Multi-Scale Attention for Genome-Wide Association Studies
+# HierGWAS: Hierarchical Multi-Scale Attention for Genome-Wide Association Studies and Genomic Discovery
 
 <div align="center">
 
@@ -8,40 +8,20 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2024.xxxxx-b31b1b.svg)](https://arxiv.org/abs/2024.xxxxx)
 [![GitHub Stars](https://img.shields.io/github/stars/username/HierGWAS?style=social)](https://github.com/username/HierGWAS)
 
-**🧬 Revolutionary Multi-Scale Attention Architecture for Genomic Discovery**
 
 [**Paper**](https://arxiv.org/abs/2024.xxxxx) | [**Documentation**](docs/) | [**Tutorials**](demo/) | [**Results**](#performance-results)
 
 </div>
 
 ---
-# HierGWAS: Complete Usage Guide
-
-## 🎯 Overview
 
 **HierGWAS** (Hierarchical Multi-Scale Attention for Genome-Wide Association Studies) is a novel deep learning method that captures genomic interactions at multiple biological scales using hierarchical attention mechanisms.
 
 This guide provides **complete step-by-step instructions** to run all HierGWAS files successfully.
 
----
+## Quick Start
 
-## 📋 Table of Contents
-
-1. [Quick Start](#quick-start)
-2. [System Requirements](#system-requirements)
-3. [Installation Steps](#installation-steps)
-4. [File Structure](#file-structure)
-5. [Step-by-Step Execution](#step-by-step-execution)
-6. [Usage Examples](#usage-examples)
-7. [Configuration Options](#configuration-options)
-8. [Troubleshooting](#troubleshooting)
-9. [Advanced Features](#advanced-features)
-
----
-
-## 🚀 Quick Start
-
-**Want to run HierGWAS immediately? Follow these 4 steps:**
+**Main steps to run HierGWAS:**
 
 ```bash
 # 1. Clone and setup
@@ -64,7 +44,7 @@ python examples/basic_usage.py
 
 ---
 
-## 💻 System Requirements
+## System Requirements
 
 ### Minimum Requirements
 - **Python**: 3.8 or higher
@@ -80,7 +60,7 @@ python examples/basic_usage.py
 
 ---
 
-## 🔧 Installation Steps
+## Installation Steps
 
 ### Step 1: Environment Setup
 
@@ -151,13 +131,13 @@ python -c "
 import hiergwas
 from hiergwas import HierGWASModel, HierGWASConfig
 from hiergwas.data import GWASData
-print('✅ HierGWAS installed successfully!')
+print('HierGWAS installed successfully!')
 "
 ```
 
 ---
 
-## 📁 File Structure
+## File Structure
 
 ```
 HierGWAS/
@@ -180,7 +160,7 @@ HierGWAS/
 
 ---
 
-## 🎯 Step-by-Step Execution
+## Step-by-Step Execution
 
 ### Method 1: Basic Usage (Recommended for Beginners)
 
@@ -208,7 +188,7 @@ python examples/basic_usage.py
 [2024-01-15 10:30:03] INFO: Loaded GWAS data: GWASData(samples=2000, snps=1000, genes=500, pathways=100)
 ...
 [2024-01-15 10:35:00] INFO: Test AUC: 0.8234
-[2024-01-15 10:35:01] INFO: ✅ HierGWAS Basic Usage Example completed successfully!
+[2024-01-15 10:35:01] INFO: HierGWAS Basic Usage Example completed successfully!
 ```
 
 **Generated Files:**
@@ -245,7 +225,7 @@ python examples/advanced_usage.py --data-path /path/to/your/data --config config
 [2024-01-15 10:45:01] INFO: Starting 5-fold cross-validation...
 [2024-01-15 11:00:00] INFO: Cross-validation AUC: 0.8234 ± 0.0123
 ...
-[2024-01-15 11:30:00] INFO: ✅ Advanced Analysis Complete
+[2024-01-15 11:30:00] INFO: Advanced Analysis Complete
 ```
 
 ### Method 3: Custom Usage (For Specific Datasets)
@@ -296,7 +276,7 @@ model = HierGWASModel(data=data, config=config)
 
 ---
 
-## 📊 Usage Examples
+## Usage Examples
 
 ### Example 1: Quick Model Training
 
@@ -344,7 +324,7 @@ model = model.to(device)
 criterion = torch.nn.BCEWithLogitsLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=config.learning_rate)
 
-print("🚀 Starting quick training...")
+print(" Starting quick training...")
 for epoch in range(config.max_epochs):
     model.train()
     for batch in train_loader:
@@ -363,7 +343,7 @@ for epoch in range(config.max_epochs):
     
     print(f"Epoch {epoch+1}/{config.max_epochs}, Loss: {loss.item():.4f}")
 
-print("✅ Quick training completed!")
+print(" Quick training completed!")
 ```
 
 ### Example 2: Attention Analysis
@@ -405,13 +385,13 @@ biological_analysis = analyze_biological_relevance(
     save_path='biological_analysis.pkl'
 )
 
-print("📊 Attention analysis completed!")
+print(" Attention analysis completed!")
 print(f"Attention entropy: {biological_analysis['attention_statistics']['attention_entropy']:.4f}")
 ```
 
 ---
 
-## ⚙️ Configuration Options
+## Configuration Options
 
 ### Predefined Configurations
 
@@ -459,81 +439,6 @@ config = HierGWASConfig(
     device='auto'                    # 'auto', 'cpu', 'cuda'
 )
 ```
-
----
-
-## 🔧 Troubleshooting
-
-### Common Issues and Solutions
-
-#### Issue 1: Import Error
-```
-ModuleNotFoundError: No module named 'hiergwas'
-```
-**Solution:**
-```bash
-# Make sure you're in the correct environment
-source hiergwas_env/bin/activate
-
-# Reinstall HierGWAS
-pip install -e .
-```
-
-#### Issue 2: PyTorch Geometric Error
-```
-No module named 'torch_geometric'
-```
-**Solution:**
-```bash
-# Install PyTorch first
-pip install torch
-
-# Then install PyTorch Geometric
-pip install torch-geometric
-pip install torch-scatter torch-sparse torch-cluster
-```
-
-#### Issue 3: CUDA Out of Memory
-```
-RuntimeError: CUDA out of memory
-```
-**Solution:**
-```python
-# Reduce batch size
-config.batch_size = 128  # Instead of 512
-
-# Or use CPU
-config.device = 'cpu'
-```
-
-#### Issue 4: Slow Training
-**Solution:**
-```python
-# Use smaller configuration
-config = HierGWASConfigs.small()
-
-# Reduce epochs for testing
-config.max_epochs = 10
-
-# Use GPU if available
-config.device = 'cuda'
-```
-
-#### Issue 5: Data Loading Error
-```
-FileNotFoundError: Data files not found
-```
-**Solution:**
-```python
-# Use synthetic data for testing
-from hiergwas.utils import create_synthetic_gwas_data
-
-data = create_synthetic_gwas_data(
-    num_samples=1000,
-    save_path="data/synthetic"
-)
-```
-
 ### Getting Help
 
 1. **Check the examples**: Look at `examples/basic_usage.py` and `examples/advanced_usage.py`
@@ -544,7 +449,7 @@ data = create_synthetic_gwas_data(
 
 ---
 
-## 🚀 Advanced Features
+## Advanced Features
 
 ### Hyperparameter Optimization
 
@@ -586,7 +491,7 @@ pathway_results = analyzer.pathway_enrichment_analysis(attention_weights)
 
 ---
 
-## 📈 Expected Performance
+## Expected Performance
 
 ### Typical Results
 - **Training Time**: 10-30 minutes (depending on data size and hardware)
@@ -601,7 +506,7 @@ pathway_results = analyzer.pathway_enrichment_analysis(attention_weights)
 
 ---
 
-## 🎯 Next Steps
+## Next Steps
 
 1. **Start with basic example**: Run `python examples/basic_usage.py`
 2. **Try your own data**: Modify the data loading section
@@ -611,7 +516,7 @@ pathway_results = analyzer.pathway_enrichment_analysis(attention_weights)
 
 ---
 
-## 📞 Support
+## Support
 
 - **Documentation**: Check `INSTALLATION.md` for detailed setup
 - **Examples**: See `examples/` directory for complete tutorials
@@ -619,12 +524,6 @@ pathway_results = analyzer.pathway_enrichment_analysis(attention_weights)
 - **Email**: Contact the development team
 
 ---
-
-**🎉 You're ready to use HierGWAS! Start with the basic example and explore the advanced features.**
-
-
-
-## 🚀 Introduction
 
 **HierGWAS** introduces a groundbreaking **Hierarchical Multi-Scale Attention (HMSA)** architecture that revolutionizes genome-wide association studies by simultaneously capturing genomic interactions across multiple biological scales. Our method addresses the fundamental challenge in GWAS: understanding how genetic variants interact at different organizational levels of the genome.
 
@@ -670,7 +569,7 @@ Our core innovation is the **HMSA mechanism** that processes genomic data throug
 - **Attention Pattern**: Diffuse patterns across chromosomes
 - **Captures**: Long-range regulatory interactions and pathway crosstalk
 
-### 🔄 Hierarchical Integration
+### Hierarchical Integration
 
 The **hierarchical weighting module** learns to optimally combine information from all scales:
 
@@ -684,9 +583,9 @@ Y = Σᵢ αᵢ · Aᵢ(Xᵢ)
 
 Where `Aᵢ(Xᵢ)` represents scale-specific attention and `αᵢ` are learned hierarchical weights.
 
-## 📊 Performance Results
+## Performance Results
 
-### 🏆 Benchmark Comparison
+### Benchmark Comparison
 
 | Method | ROC AUC | PR AUC | Training Time | Parameters | Biological Validation |
 |--------|---------|--------|---------------|------------|---------------------|
@@ -696,7 +595,7 @@ Where `Aᵢ(Xᵢ)` represents scale-specific attention and `αᵢ` are learned h
 | **HierGWAS (Ours)** | **0.823** | **0.789** | 67.8s | 124,832 | **85%** |
 | **Improvement** | **+0.067** | **+0.075** | - | - | **+14%** |
 
-### 📈 Ablation Study
+### Ablation Study
 
 | Component | ROC AUC | Δ AUC | Biological Insight |
 |-----------|---------|-------|-------------------|
@@ -706,7 +605,7 @@ Where `Aᵢ(Xᵢ)` represents scale-specific attention and `αᵢ` are learned h
 | + Biological Priors | 0.815 | +0.014 | Domain knowledge integration |
 | + Cross-Scale Fusion | 0.823 | +0.008 | Enhanced information flow |
 
-### 🔬 Biological Validation Results
+### Biological Validation Results
 
 - **Gene Ontology Enrichment**: 85% of high-attention genes show relevant GO terms
 - **Pathway Database Overlap**: 78% concordance with KEGG/Reactome
@@ -714,7 +613,7 @@ Where `Aᵢ(Xᵢ)` represents scale-specific attention and `αᵢ` are learned h
 - **Novel Gene-Disease Associations**: 15 high-confidence discoveries
 - **Attention-Biology Correlation**: r = 0.73 with known interaction networks
 
-## 🛠️ Installation
+## Installation
 
 ### Quick Setup
 ```bash
@@ -739,7 +638,7 @@ conda activate hiergwas
 python -c "import hiergwas; print('HierGWAS installed successfully!')"
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Basic Usage
 
@@ -834,9 +733,9 @@ print(f"Novel discoveries: {len(insights['novel_associations'])}")
 print(f"Enriched pathways: {len(insights['enriched_pathways'])}")
 ```
 
-## 🧬 Method Details
+## Method Details
 
-### 🏗️ Architecture Overview
+### 🏗Architecture Overview
 
 <div align="center">
 <img src="docs/images/hiergwas_architecture.png" alt="HierGWAS Architecture" width="700"/>
@@ -926,29 +825,29 @@ Across diverse phenotypes, HierGWAS learns biologically meaningful scale prefere
 - **Complex Diseases**: Balanced multi-scale (α₁ = 0.5, α₂ = 0.3, α₃ = 0.2)  
 - **Quantitative Traits**: Global scale emphasis (α₁ = 0.3, α₂ = 0.3, α₃ = 0.4)
 
-## 📚 Documentation
+## Documentation
 
-### 📖 User Guides
+### User Guides
 - [**Installation Guide**](docs/installation.md) - Complete setup instructions
 - [**User Manual**](docs/user_guide.md) - Comprehensive usage documentation
 - [**API Reference**](docs/api_reference.md) - Detailed API documentation
 - [**Best Practices**](docs/best_practices.md) - Optimization guidelines
 
-### 🔬 Research Documentation
+### Research Documentation
 - [**Method Paper**](docs/hiergwas_paper.pdf) - Full technical description
 - [**Supplementary Materials**](docs/supplementary.pdf) - Additional analyses
 - [**Biological Interpretation**](docs/biology_guide.md) - Multi-scale genomics insights
 - [**Benchmarking Results**](docs/benchmarks.md) - Comprehensive performance analysis
 
-### 🧪 Tutorials and Examples
+### Tutorials and Examples
 - [`tutorials/basic_usage.ipynb`](tutorials/basic_usage.ipynb) - Getting started
 - [`tutorials/advanced_features.ipynb`](tutorials/advanced_features.ipynb) - Advanced configurations
 - [`tutorials/attention_analysis.ipynb`](tutorials/attention_analysis.ipynb) - Interpreting results
 - [`tutorials/biological_insights.ipynb`](tutorials/biological_insights.ipynb) - Biological discovery
 
-## 🧪 Reproducibility
+## Reproducibility
 
-### 🔬 Reproduce Paper Results
+### Reproduce Paper Results
 ```bash
 # Download benchmark datasets
 python scripts/download_data.py --datasets ukbb,gtex,synthetic
@@ -960,7 +859,7 @@ python experiments/run_benchmarks.py --config configs/paper_config.yaml
 python scripts/generate_figures.py --results results/benchmarks/
 ```
 
-### 📊 Custom Experiments
+### Custom Experiments
 ```bash
 # Run ablation studies
 python experiments/ablation_study.py --components all
@@ -972,7 +871,7 @@ python experiments/hyperopt.py --trials 100 --dataset your_data
 python experiments/cross_validation.py --folds 5 --metrics auc,precision,recall
 ```
 
-## 🏆 Comparison with State-of-the-Art
+## Comparison with State-of-the-Art
 
 ### 📈 Performance Benchmarks
 
@@ -988,7 +887,7 @@ python experiments/cross_validation.py --folds 5 --metrics auc,precision,recall
 | **KGWAS** | 2023 | 0.742 | 0.698 | ✅ | ❌ |
 | **HierGWAS (Ours)** | 2024 | **0.823** | **0.789** | ✅ | ✅ |
 
-### 🔬 Novel Contributions
+### Novel Contributions
 
 1. **First Multi-Scale GWAS Method**: Pioneering hierarchical attention for genomics
 2. **Biological Scale Integration**: Principled combination of genomic organization levels
@@ -996,11 +895,11 @@ python experiments/cross_validation.py --folds 5 --metrics auc,precision,recall
 4. **Superior Performance**: State-of-the-art results across multiple metrics
 5. **Practical Impact**: Ready for real-world genomic discovery
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions from the genomics and machine learning communities!
 
-### 🛠️ Development Setup
+### Development Setup
 ```bash
 # Fork and clone the repository
 git clone https://github.com/yourusername/HierGWAS.git
@@ -1017,21 +916,14 @@ flake8 hiergwas/
 black hiergwas/ --check
 ```
 
-### 📝 Contribution Areas
-- 🐛 **Bug Reports**: Help us improve reliability
-- 💡 **Feature Requests**: Suggest new capabilities
-- 📚 **Documentation**: Enhance guides and tutorials
-- 🧪 **Testing**: Expand test coverage
-- 🔬 **Research**: Novel attention mechanisms and biological insights
-
-## 📄 Citation
+## Citation
 
 If you use HierGWAS in your research, please cite our paper:
 
 ```bibtex
 @article{hiergwas2024,
   title={HierGWAS: Hierarchical Multi-Scale Attention for Genome-Wide Association Studies},
-  author={[Author Names]},
+  author={[Sakhaa alsaedi]},
   journal={Nature Methods},
   year={2024},
   volume={XX},
@@ -1042,7 +934,7 @@ If you use HierGWAS in your research, please cite our paper:
 ```
 # HierGWAS Quick Start Guide
 
-## 🚀 Run HierGWAS in 5 Minutes
+## Run HierGWAS in 5 Minutes
 
 ### Step 1: Setup Environment (2 minutes)
 
@@ -1083,12 +975,9 @@ pip install -e .
 # Run the basic usage example
 python examples/basic_usage.py
 ```
-
-**That's it! 🎉**
-
 ---
 
-## 📋 What Each File Does
+## What Each File Does
 
 ### Core Files
 - **`hiergwas/hiergwas.py`** - Main model class
@@ -1104,7 +993,7 @@ python examples/basic_usage.py
 
 ---
 
-## 🎯 Execution Order
+## Execution Order
 
 ### For Beginners:
 1. **Run basic example**: `python examples/basic_usage.py`
@@ -1118,31 +1007,7 @@ python examples/basic_usage.py
 
 ---
 
-## 🔧 Quick Troubleshooting
-
-### If you get import errors:
-```bash
-# Make sure you're in the right environment
-source hiergwas_env/bin/activate
-pip install -e .
-```
-
-### If you get memory errors:
-```python
-# Edit the config in examples/basic_usage.py
-config.update(batch_size=128)  # Reduce from 512
-```
-
-### If training is too slow:
-```python
-# Use smaller configuration
-config = HierGWASConfigs.small()
-config.max_epochs = 10  # Reduce epochs
-```
-
----
-
-## 📊 Expected Output
+##Expected Output
 
 When you run `python examples/basic_usage.py`, you should see:
 
@@ -1170,7 +1035,7 @@ When you run `python examples/basic_usage.py`, you should see:
 
 ---
 
-## 🎯 Next Steps
+## Next Steps
 
 1. **Explore the code**: Look at `examples/basic_usage.py` to understand the workflow
 2. **Try different configurations**: Modify the config parameters
@@ -1196,40 +1061,19 @@ python examples/advanced_usage.py --use-synthetic
 python -c "import hiergwas; print('✅ Success!')"
 ```
 
-**Need help?** Check the full `HierGWAS_README.md` for detailed instructions!
+## Related Resources
 
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Genomics Community**: For valuable feedback and biological insights
-- **PyTorch Geometric Team**: Excellent graph neural network framework
-- **GWAS Researchers**: For foundational methodological contributions
-- **Open Science**: Commitment to reproducible and accessible research
-
-## 📞 Contact & Support
-
-- **📧 Email**: [hiergwas@research.edu](mailto:hiergwas@research.edu)
-- **💬 Discussions**: [GitHub Discussions](https://github.com/username/HierGWAS/discussions)
-- **🐛 Issues**: [GitHub Issues](https://github.com/username/HierGWAS/issues)
-- **📚 Documentation**: [Full Documentation](https://hiergwas.readthedocs.io/)
-
-## 🔗 Related Resources
-
-### 📊 Datasets
+### Datasets
 - [**UK Biobank**](https://www.ukbiobank.ac.uk/) - Large-scale genomic cohort
 - [**GTEx Portal**](https://gtexportal.org/) - Gene expression reference
 - [**GWAS Catalog**](https://www.ebi.ac.uk/gwas/) - Published associations
 
-### 🛠️ Tools & Libraries
+### Tools & Libraries
 - [**PyTorch Geometric**](https://pytorch-geometric.readthedocs.io/) - Graph neural networks
 - [**PLINK**](https://www.cog-genomics.org/plink/) - Genomic analysis toolkit
 - [**Hail**](https://hail.is/) - Scalable genomic analysis
 
-### 📚 Research Papers
+### Research Papers
 - [**Original KGWAS**](https://arxiv.org/abs/XXXX.XXXXX) - Foundation framework
 - [**Graph Attention Networks**](https://arxiv.org/abs/1710.10903) - Attention mechanisms
 - [**Multi-Scale Networks**](https://arxiv.org/abs/XXXX.XXXXX) - Scale-aware architectures
@@ -1238,9 +1082,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**⭐ Star this repository to support genomic AI research! ⭐**
+## License
 
-**🧬 Advancing precision medicine through hierarchical genomic understanding 🧬**
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact & Support
+
+- ** Email**: [hiergwas@research.edu](mailto:hiergwas@research.edu)
+- ** Discussions**: [GitHub Discussions](https://github.com/username/HierGWAS/discussions)
+- ** Issues**: [GitHub Issues](https://github.com/username/HierGWAS/issues)
+- ** Documentation**: [Full Documentation](https://hiergwas.readthedocs.io/)
 
 Made with ❤️ for the scientific community
 
